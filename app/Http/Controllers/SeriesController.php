@@ -27,11 +27,11 @@ class SeriesController extends Controller
             $temporada = $serie->temporadas()->create(['numero' => $i]);
 
             for ($j=1; $j <= $request->ep_por_temporada; $j++ ) {
-                
+                $episodio = $temporada->episodios()->create(['numero' => $j]);
             }
         }
 
-        $request->session()->flash("mensagem", "Série {$serie->id} criada com sucesso {$serie->nome}!");
+        $request->session()->flash("mensagem", "Série {$serie->id} e suas temporadas e episódios criados com sucesso {$serie->nome}!");
 
         return redirect()-> route('listar_series');
     }
